@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float ySpeed = 0.5f;
     public float rotationOffset = 0.1f;
     public float finishedMinigameSpeed = 0.1f;
+    public float distanceModifier = 10f;
     private Vector3 targetEulerAngles;
     private int lastTurn = 0;
     private float obstacleSpawnerTimer = 0;
@@ -203,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateProgress()
     {
-        CurrentDistance += CurrentSpeed * Time.deltaTime;
+        CurrentDistance += CurrentSpeed * Time.deltaTime * distanceModifier;
         CurrentTime += Time.deltaTime;
 
         if (CurrentTime >= roundTime)

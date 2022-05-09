@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
     {
         HideAllScreens();
         resultScreen.SetActiveOptimized(true);
-        resultTMP.text = result.ToString("000.0");
+        resultTMP.text = result.ToString("#####.0").Replace(',', '.') + "m";
 
         if (showInputField == false)
         {
@@ -112,8 +112,8 @@ public class UIManager : MonoBehaviour
     {
         if (statsScreen.activeSelf)
         {
-            timeTMP.text = (PlayerController.Instance.roundTime - PlayerController.CurrentTime).ToString("00.000") + "s";
-            distanceTMP.text = PlayerController.CurrentDistance.ToString("000.0");
+            timeTMP.text = (PlayerController.Instance.roundTime - PlayerController.CurrentTime).ToString("#0.000").Replace(',', '.') + "s";
+            distanceTMP.text = "Distance: " + PlayerController.CurrentDistance.ToString("#####.0").Replace(',', '.') + "m";
         }
     }
 
