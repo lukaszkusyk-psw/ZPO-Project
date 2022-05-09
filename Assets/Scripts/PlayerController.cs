@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
         PrepareMinigame();
     }
 
@@ -90,10 +94,14 @@ public class PlayerController : MonoBehaviour
         MinigameSpeed = 1;
         isStraight = false;
         isPlaying = true;
+        AudioManager.instance.UpdateMusic(true);
     }
         
     private void Update()
     {
+        if (isPlaying == false)
+            return;
+        
         HandleInput();
         ControlPlayerPosition();
         ManageObstacles();
@@ -194,7 +202,9 @@ public class PlayerController : MonoBehaviour
 
         isPlaying = false;
 
-        if(result == true)
+        AudioManager.instance.UpdateMusic(false);
+
+        if (result == true)
         {
             //porównanie wyników
         }
