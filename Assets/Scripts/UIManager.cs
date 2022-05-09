@@ -85,6 +85,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SaveResult()
+    {
+        BestScoresManager.Instance.AddScore(new ScoreData(nameInputFieldTMP.text, PlayerController.CurrentDistance));
+    }
+
     private void Awake()
     {
         Instance = this;

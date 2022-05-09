@@ -1272,6 +1272,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402516668}
   m_CullTransparentMesh: 1
+--- !u!1 &451679203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451679204}
+  - component: {fileID: 451679205}
+  m_Layer: 0
+  m_Name: BestScoresManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451679204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451679203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451679205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451679203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5d2c02097a7ca48856e97b3570e382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  json: 
 --- !u!1 &453635494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,7 +1980,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 115774240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1586877025}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SaveResult
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &807713492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,7 +4041,7 @@ MonoBehaviour:
   timeTMP: {fileID: 783714544}
   distanceTMP: {fileID: 1368189446}
   gameOverScreen: {fileID: 929297381}
-  resultScreen: {fileID: 1443720895}
+  resultScreen: {fileID: 1983193530}
   resultTMP: {fileID: 1443720897}
   nameInputFieldTMP: {fileID: 2105331401}
   leaderboardScreen: {fileID: 822972844}
@@ -4837,7 +4893,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1735787101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451679205}
+        m_TargetAssemblyTypeName: BestScoresManager, Assembly-CSharp
+        m_MethodName: PrepareLeaderboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1968370375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5340,7 +5408,7 @@ MonoBehaviour:
   minMaxVanSpawnDistance: {x: 4, y: 6}
   maxObstaclesCount: 6
   playerVan: {fileID: 0}
-  roundTime: 60
+  roundTime: 45
   rightLineVanOffset: 0.8
   xSpeed: 5
   yRotation: 15

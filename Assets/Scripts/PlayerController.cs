@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         Obstacle.ObstaclesCount = 0;
         SpawnPlayer();
         TurnRight();
+        CurrentTime = 0;
         CurrentDistance = 0;
         CurrentSpeed = -0.2f;
         MinigameSpeed = 1;
@@ -117,7 +118,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isPlaying == false)
             return;
-        
+
+        UpdateRaycast();
         HandleInput();
         ControlPlayerPosition();
         ManageObstacles();
@@ -137,8 +139,6 @@ public class PlayerController : MonoBehaviour
         Destroy(playerVan.GetComponent<Obstacle>());//.enabled = false;
         playerVan.gameObject.name = "PlayerVan";
         playerVan.Find("Collider").gameObject.AddComponent<VanCollider>();
-        playerChild.SetParent(playerVan);
-        playerChild.localPosition = Vector3.zero;
     }
 
     private void HandleInput()
@@ -213,6 +213,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateRaycast()
+    {
+        playerChild.transform.position = playerVan.transform.position;
+    }
+
     public void FinishMinigame(bool result)
     {
         if (isPlaying == false)
@@ -222,11 +227,9 @@ public class PlayerController : MonoBehaviour
 
         AudioManager.instance.UpdateMusic(false);
 
-        playerChild.SetParent(transform);
-
         if (result == true)
         {
-            UIManager.Instance.ShowResultScreen(CurrentDistance, true);
+            UIManager.Instance.ShowResultScreen(CurrentDistance, BestScoresManager.Instance.CanAddScore(CurrentDistance));
         }
         else
         {
