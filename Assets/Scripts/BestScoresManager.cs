@@ -41,17 +41,19 @@ public class BestScoresManager : MonoBehaviour
     public void AddScore(ScoreData scoreToAdd)
     {
         int scoresCount = bestScores.scores.Count;
+        bool hasBeenSaved = false;
 
         for (int i = 0; i < scoresCount; i++)
         {
             if (scoreToAdd.playerDistance > bestScores.scores[i].playerDistance)
             {
                 bestScores.scores.Insert(i, scoreToAdd);
-                return;
+                hasBeenSaved = true;
+                break;
             }
         }
 
-        if (scoresCount < 10)
+        if (scoresCount < 10 && hasBeenSaved == false)
             bestScores.scores.Add(scoreToAdd);
 
         SaveScores();
@@ -75,5 +77,12 @@ public class BestScoresManager : MonoBehaviour
         UIManager.Instance.ShowLeaderbordScreen(bestScores.scores.Select(s => s.ToString()).ToArray());
     }
 
+    private void FixScoresListLength()
+    {
+        for (int i = 10; i < bestScores.scores.Count; i++)
+        {
+            bestScores.scores.RemoveAt(10);
+        }
+    }
 
 }
