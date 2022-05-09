@@ -90,6 +90,15 @@ public class UIManager : MonoBehaviour
         BestScoresManager.Instance.AddScore(new ScoreData(nameInputFieldTMP.text, PlayerController.CurrentDistance));
     }
 
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
+
     private void Awake()
     {
         Instance = this;
