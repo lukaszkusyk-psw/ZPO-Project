@@ -80,10 +80,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        PrepareMinigame();
+
     }
 
-    private void PrepareMinigame()
+    public void PrepareMinigame()
     {
         vanTargetOffset = rightLineVanOffset;
         Obstacle.ObstaclesCount = 0;
@@ -95,6 +95,22 @@ public class PlayerController : MonoBehaviour
         isStraight = false;
         isPlaying = true;
         AudioManager.instance.UpdateMusic(true);
+        UIManager.Instance.ShowGameUI();
+    }
+
+    public void DestroyOldObjects()
+    {
+        if (playerVan != null)
+        {
+            Destroy(playerVan.gameObject);
+        }
+
+        Obstacle[] obstacles = GetComponentsInChildren<Obstacle>();
+
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            Destroy(obstacles[i].gameObject);
+        }
     }
         
     private void Update()
@@ -115,6 +131,8 @@ public class PlayerController : MonoBehaviour
 
     private void SpawnPlayer()
     {
+        DestroyOldObjects();
+
         playerVan = Instantiate(vanPrefab, playerSpawnPosition.position + new Vector3(3, 0, 0), playerSpawnPosition.rotation, vansHolder).transform;
         Destroy(playerVan.GetComponent<Obstacle>());//.enabled = false;
         playerVan.gameObject.name = "PlayerVan";
@@ -204,13 +222,15 @@ public class PlayerController : MonoBehaviour
 
         AudioManager.instance.UpdateMusic(false);
 
+        playerChild.SetParent(transform);
+
         if (result == true)
         {
-            //porównanie wyników
+            UIManager.Instance.ShowResultScreen(CurrentDistance, true);
         }
         else
         {
-            //wyświetlenie ekranu "koniec gry"
+            UIManager.Instance.ShowGameOverScreen();
         }
     }
 
