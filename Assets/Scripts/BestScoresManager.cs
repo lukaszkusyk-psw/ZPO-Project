@@ -7,10 +7,6 @@ using UnityEngine;
 public class BestScoresManager : MonoBehaviour
 {
     public static BestScoresManager Instance;
-
-    [TextArea(3, 10)]
-    public string json;
-
     private BestScores bestScores;
 
     private void Awake()
@@ -35,7 +31,6 @@ public class BestScoresManager : MonoBehaviour
     {
         string jsonContent = JsonUtility.ToJson(bestScores, true);
         File.WriteAllText(Application.persistentDataPath + "/BestScores.json", jsonContent);
-        json = jsonContent;
     }
 
     public void AddScore(ScoreData scoreToAdd)
