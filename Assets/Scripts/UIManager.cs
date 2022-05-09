@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,8 +9,8 @@ public class UIManager : MonoBehaviour
     [Header("Menu Screen")]
     public GameObject menuScreen;
 
-    [Header("Stats")]
-    public GameObject statsScreen;
+    [Header("Player")]
+    public GameObject playerScreen;
     public TextMeshProUGUI timeTMP;
     public TextMeshProUGUI distanceTMP;
 
@@ -28,6 +26,9 @@ public class UIManager : MonoBehaviour
     public GameObject leaderboardScreen;
     public TextMeshProUGUI[] leaderLinesTMP;
 
+    [Header("Other")]
+    public Button usefullButton;
+
     public void ShowMenu()
     {
         HideAllScreens();
@@ -39,7 +40,7 @@ public class UIManager : MonoBehaviour
     public void ShowGameUI()
     {
         HideAllScreens();
-        statsScreen.SetActiveOptimized(true);
+        playerScreen.SetActiveOptimized(true);
     }
 
     public void ShowGameOverScreen()
@@ -110,7 +111,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (statsScreen.activeSelf)
+        if (playerScreen.activeSelf)
         {
             timeTMP.text = (PlayerController.Instance.roundTime - PlayerController.CurrentTime).ToString("#0.000").Replace(',', '.') + "s";
             distanceTMP.text = "Distance: " + PlayerController.CurrentDistance.ToString("#####.0").Replace(',', '.') + "m";
@@ -120,9 +121,11 @@ public class UIManager : MonoBehaviour
     private void HideAllScreens()
     {
         menuScreen.SetActiveOptimized(false);
-        statsScreen.SetActiveOptimized(false);
+        playerScreen.SetActiveOptimized(false);
         gameOverScreen.SetActiveOptimized(false);
         resultScreen.SetActiveOptimized(false);
         leaderboardScreen.SetActiveOptimized(false);
+
+        usefullButton.Select();
     }
 }
