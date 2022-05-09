@@ -16,6 +16,6 @@ public class ScoreData
 
     public override string ToString()
     {
-        return (int)playerDistance + " - " + playerName;
+        return playerDistance.ToString("#####.000").Replace(',', '.') + " - " + playerName;
     }
 }
