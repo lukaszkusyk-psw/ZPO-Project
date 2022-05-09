@@ -4380,7 +4380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuScreen: {fileID: 1006460548}
-  playerScreen: {fileID: 0}
+  playerScreen: {fileID: 553413996}
   timeTMP: {fileID: 783714544}
   distanceTMP: {fileID: 1368189446}
   gameOverScreen: {fileID: 929297381}
